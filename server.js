@@ -19,7 +19,7 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
  //sender til databasen, og databasen sender tilbage
  app.get('/add-blog', (req,res) =>{
     const blog = new Blog({
-        title: 'new blog 2',
+        title: 'new blog 3',
         snippet: 'about my new blog',
         body: 'more about my new blog'
     });

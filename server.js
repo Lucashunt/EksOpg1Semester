@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+//middelware
+app.use(express.static('public'))
+
 //bruger mongoose og henter model.js
 const mongoose = require('mongoose');
 const Blog = require('./Models/model')

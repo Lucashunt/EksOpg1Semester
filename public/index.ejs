@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+    />
+
+</head>
+<body>
+
+<%- include('./pages/partials/nav.ejs')  %> 
+
+
+<!-- OPRET PROFIL SEKTION-->
+
+    <section class="my-5 py-5" id="">
+        <div class="container-lg">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-5 text-center text-md-start">
+                    <h1>
+                        <div class="display-3">Opret Profil</div>
+                        <div class="display-5 text-muted">Gør det før din nabo</div>
+                    </h1>
+                    <p class="lead my-4 text-muted">Opret en profil for at sælge varer og købe andres varer</p>
+                        <a href="/Opretprofil" class="btn btn-outline-secondary btn-large">Klik her</a>
+                </div>
+                <div class="col-md-5 text-center d-none d-md-block">
+                    <img class="img-fluid" src="/Assets/forside2.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- VARE KATEGORIER SEKTION -->
+
+    <section>
+        <div class="container-xxl my-5">
+            <h2 class="mb-3 text-primary">Kategorier</h2>
+            <div class="row">
+                <div class="col-3">
+                    <div class="card">
+                        <img src="/Assets/car" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Biler</h5>
+                          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nisi dolorum quas!</p>
+                          <a href="/biler" class="btn btn-primary">Klik her</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-3">
+                    <div class="card">
+                        <img src="/Assets/el.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Elektronik</h5>
+                          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nisi dolorum quas!</p>
+                          <a href="/Elektronik" class="btn btn-primary">Klik her</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-3">
+                    <div class="card">
+                        <img src="/Assets/bukser" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Tøj</h5>
+                          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nisi dolorum quas!</p>
+                          <a href="/clothes" class="btn btn-primary">Klik her</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-3">
+                    <div class="card">
+                        <img src="/Assets/cykel" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Cykler</h5>
+                          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nisi dolorum quas!</p>
+                          <a href="/cykler" class="btn btn-primary">Klik her</a>
+                        </div>
+                      </div>
+                </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+    />
+</head>
+<body>
+    <%- include('./pages/partials/nav2.ejs')  %> 
+
+    <section class="my-5 py-5" id="intro">
+        <div class="container-lg">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-5 text-center d-none d-md-block">
+                    <img class="img-fluid" src="../Assets/Profil.jpeg" alt="profilBillede">
+                </div>
+                <div class="col-5 text-center">
+                    <div class="m-3 p-3 rounded-pill border border-primary border-5 shadow lg fw-bold">Fulde navn</div>
+                        <div class="fst-italic fw-light"><%= name %> </div>
+                    <div class="m-3 p-3 rounded-pill border border-dark border-5 shadow lg fw-bold">Adresse</div>
+                        <div class="fst-italic fw-light"><%= address %> </div>
+                    <div class="m-3 p-3 rounded-pill border border-secondary border-5 shadow lg fw-bold">Email</div>
+                        <div class="fst-italic fw-light"><%= username %> </div>
+                    <div class="m-3 p-3 rounded-pill border border-grey border-5 shadow lg fw-bold">Adgangskode</div>
+                        <div class="fst-italic fw-light"> <%= password %> </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Opret vare-->
+
+<!-- Rediger varer, inkl slet-->
+
+<!-- Se varer -->
+
+<!-- Rediger profil, inkl slet-->
+
+<!-- Log ud-->
+
+
+</body>
+</html>

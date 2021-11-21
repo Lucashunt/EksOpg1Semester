@@ -17,25 +17,29 @@
         <div class="my-5 py-5 container-xxl">
           <div class="row align-items-center justify-content-evenly">
             <div class="col-8">
-            <form class="py-5">
+            <form action="/Opretvare" method="post" class="py-5">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Overskrift</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
                     <div id="emailHelp" class="form-text">Skriv en kort overskrift for din vare</div>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Beskrivelse</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="description">
                     <div id="emailHelp" class="form-text">Skriv en kort præcis beskrivelse af din vare</div>
                   </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Pris i Kr</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
                   <div id="emailHelp" class="form-text">Hvor meget skal din vare koste?</div>
                 </div>
                 <div class="mb-3">
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="picture">
+                </div>
+                <div class="mb-3">
                     <label for="inputPassword5" class="form-label">Kategori</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="category">
                         <option selected>Vælg en kategori</option>
                         <option value="1">Bil</option>
                         <option value="2">Cykel</option>

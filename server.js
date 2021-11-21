@@ -27,6 +27,7 @@ app.use((req,res, next) =>{
 //bruger mongoose og henter model.js
 const mongoose = require('mongoose');
 const Profile = require('./Models/model')
+const Varer = require('./Models/vare')
 
 
 
@@ -69,16 +70,7 @@ app.post('/profiles', (req,res) =>{
 })
 
 // noget med id
-app.get('/profiles/:id', (req,res)=>{
-    const id = req.params.id
-    Profile.findById(id)
-        .then((result) =>{
-            res.render('details', ({profile: result, title: 'test'}))
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
-})
+
 
 // slet
 
@@ -96,9 +88,7 @@ app.delete('/profiles/:id', (req,res) =>{
 })
 
 //kategorier
-app.get('/biler', (req,res) =>{
-        res.render('biler')
-})
+
 app.get('/cykler', (req,res) =>{
     res.render('cykler')
 })
@@ -220,39 +210,90 @@ app.post('/RedigerProfil/:id', async (req,res) =>{
         {_id: '6196a32371bc615562a45a83'}, 
         {username: username, password: password, name: name, address: address})
         .then(result =>{
-            res.redirect('/Profil')
+            res.redirect('/')
         })
         .catch((err) =>{
             console.log(err)
         })
 })
-//profil side
 
+//Opret vare til mongodb
+
+app.post('/Opretvare', (req,res) =>{
+    console.log(req.body)
+    const varer = new Varer(req.body)
+
+    // .save gemmer til databasen then catch promise async
+    varer.save()
+        .then((result) =>{
+            res.redirect('/')
+        })
+        .catch((err) =>{
+            console.log(err);
+        })
+})
+
+//måske løsning på at vise egne varer og alle varer at lave 2 databaser som den gemmer samtidigt til.
+
+// Viser alle varer der ligger på mongodb
+app.get('/biler', (req,res) =>{
+    Varer.find()
+        .then((result) =>{
+            res.render('biler', {varer: result})
+        })
+        .catch((err) =>{
+            console.log(err);
+        })
+})
+
+
+//viser enkelt vare
+app.get('/biler/:id', (req,res)=>{
+    const tal = req.params.id;
+    Varer.findById(tal)
+        .then(result => {
+            res.render('vare', {vare: result})
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+})
+
+
+
+//slet enkelt vare
+app.delete('/vare/:id', (req,res) =>{
+    const id = req.params.id;
+
+    Varer.findByIdAndDelete(id)
+    .then(result =>{
+        res.json({redirect: '/biler'})
         
-   /* .then((result) =>{
-        res.redirect('/profil')
     })
     .catch((err) =>{
         console.log(err)
     })
-     const password = Profile(req.body.password)
+})
 
- const found = Profile.find({name: username, password: password})
- if (found){
-     res.redirect('/Profil')
- } else {
-     alert('forkerte oplysninger')
- }
-    */
+app.post('/biler/:id', async (req,res) =>{  
+    const id = req.params.id;
+    const name = req.body.name;
+    const description = req.body.description;
+    const category = req.body.category;
+    const price = req.body.price;
+    const picture = req.body.picture;
 
-
-
-
-
-
-
-
-
+    console.log(id)
+    Varer.findByIdAndUpdate(
+        {_id: '619accdbbc09a04d1efe9bde'}, 
+        {name: name, description: description, category: category, price: price, picture: picture})
+        .then(result =>{
+            res.redirect('/biler')
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    })
 
 
 

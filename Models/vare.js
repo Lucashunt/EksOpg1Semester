@@ -1,26 +1,31 @@
 const mongoose = require('mongoose');
-const Vare = mongoose.Vare;
+const Schema = mongoose.Schema;
 
-const userProfile = new Vare({
+const blogSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    Address: {
+    picture: {
         type: String,
         required: true
     },
-    Email: {
+    price: {
         type: String,
         required: true
     },
-    Password: {
+    description: {
+        type: String,
+        required: true
+    },
+    category: {
         type: String,
         required: true
     }
+});
 
-}, {timestamps: true});
+const Varer = mongoose.model('Varer', blogSchema)
 
-const Profile = mongoose.model('Profile', userProfile)
+module.exports = Varer;
 
 //module.exports = Profile;

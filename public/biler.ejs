@@ -13,32 +13,33 @@
 
 <%- include('./pages/partials/nav.ejs')  %> 
 
+
+ 
+
+
     <section clas="">
         <div class="container-xxl my-5 py-5">
             <h2 class="mb-3 text-secondary">Biler</h2>
             <div class="row">
+                <% if (varer.length > 0) { %>
+                    <% varer.forEach(vare => { %>
                 <div class="col-3">
                     <div class="card mt-3">
-                        <img src="../public/Assets/cykel" class="card-img-top" alt="...">
+                        <img src="<%=  vare.picture %>" class="card-img-top" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">Overskrift</h5>
-                          <p class="card-text">Beskrivelse</p>
-                          <a href="#" class="btn btn-primary">Pris i Kr</a>
-                          <p class="card-text fw-light fst-italic mt-2">#kategori</p>
+
+
+                                <h5 class="card-title"><%= vare.name %> </h5>
+                                <p class="card-text"><%= vare.description %> </p>
+                                <a href="/biler/<%=vare ._id%>" class="btn btn-primary"><%= vare.price %> </a>
+                                <p class="card-text fw-light fst-italic mt-2">#<%= vare.category%> </p>
                         </div>
                       </div>
                 </div>
-                <div class="col-3">
-                    <div class="card mt-3">
-                        <img src="../public/Assets/cykel" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Overskrift</h5>
-                          <p class="card-text">Beskrivelse</p>
-                          <a href="#" class="btn btn-primary">Pris i Kr</a>
-                          <p class="card-text fw-light fst-italic mt-2">#kategori</p>
-                        </div>
-                      </div>
-                </div>
+                <% }) %>
+                <% } else { %>
+                    <p>There are no blogs to display</p>
+                <% } %> 
                 
             </div>
         </div>

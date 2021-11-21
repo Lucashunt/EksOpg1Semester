@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+    />
+</head>
+<body>
+    <%- include('./pages/partials/nav2.ejs')  %> 
+
+    <section class="">
+        <div class="container-xxl my-5 py-5">
+            <h2 class="mb-3 text-secondary">Biler</h2>
+            <div class="row align-items-center justify-content-evenly">
+
+                <div class="col-3">
+                    <div class="card mt-3">
+                        <img src="" class="card-img-top" alt="...">
+                        <div class="card-body">
+                                <h5 class="card-title"><%= vare.name %> </h5>
+                                <p class="card-text"><%= vare.description %> </p>
+                                <a href="#" class="btn btn-primary"><%= vare.price %> </a>
+                                <p class="card-text fw-light fst-italic mt-2">#<%= vare.category%> </p>
+                                <div>
+                                <a class="delete" data-doc="<%= vare._id%>" >delete</a>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                    <div class="col-5">
+                    <form action="/biler/:id" method="post" class="py-5">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Overskrift</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                            <div id="emailHelp" class="form-text">Skriv en kort overskrift for din vare</div>
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Beskrivelse</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="description">
+                            <div id="emailHelp" class="form-text">Skriv en kort præcis beskrivelse af din vare</div>
+                          </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Pris</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
+                          <div id="emailHelp" class="form-text">Hvor meget skal din vare koste?</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Kategori</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="category">
+                            <div id="emailHelp" class="form-text">Hvor meget skal din vare koste?</div>
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Billede</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="picture">
+                            <div id="emailHelp" class="form-text">Hvor meget skal din vare koste?</div>
+                          </div>
+                          <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Jeg accepterer vilkår</label>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Skift</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+    </section>
+
+
+
+
+
+    <script>
+        const trashcan = document.querySelector('a.delete');
+
+       trashcan.addEventListener('click', (event) => {
+            const endpoint = `/vare/${trashcan.dataset.doc}`;
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href= data.redirect)
+            .catch((err) => console.log(err))
+       
+       })
+
+
+    </script>
+
+</body>
+</html>

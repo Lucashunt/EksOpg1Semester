@@ -20,11 +20,11 @@
 
                 <div class="col-3">
                     <div class="card mt-3">
-                        <img src="" class="card-img-top" alt="...">
+                        <img src="<%= vare.picture %> " class="card-img-top" alt="...">
                         <div class="card-body">
                                 <h5 class="card-title"><%= vare.name %> </h5>
                                 <p class="card-text"><%= vare.description %> </p>
-                                <a href="#" class="btn btn-primary"><%= vare.price %> </a>
+                                <a href="#" class="btn btn-primary"><%= vare.price %> Kr</a>
                                 <p class="card-text fw-light fst-italic mt-2">#<%= vare.category%> </p>
                                 <div>
                                 <a class="delete" data-doc="<%= vare._id%>" >delete</a>
@@ -75,6 +75,7 @@
 
 
     <script>
+
         const trashcan = document.querySelector('a.delete');
 
        trashcan.addEventListener('click', (event) => {
@@ -88,6 +89,9 @@
             .catch((err) => console.log(err))
        
        })
+
+
+       
 
 
     </script>

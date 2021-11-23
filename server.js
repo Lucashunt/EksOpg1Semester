@@ -6,6 +6,8 @@ app.use(express.json());
 //middelware
 app.use(express.static('public'))
 
+
+
 //ejs
 app.set('view engine', 'ejs');
 app.set('views', 'public')
@@ -23,6 +25,7 @@ app.use((req,res, next) =>{
     //fordi express ikke ved at det skal gå videre bruger vi next, så det går videre til next middelware
     next();
 });
+
 
 //bruger mongoose og henter model.js
 const mongoose = require('mongoose');
@@ -233,11 +236,12 @@ app.post('/Opretvare', (req,res) =>{
         })
 })
 
+
 //måske løsning på at vise egne varer og alle varer at lave 2 databaser som den gemmer samtidigt til.
 
 // Viser alle varer der ligger på mongodb
 app.get('/biler', (req,res) =>{
-    Varer.find()
+    Varer.find({category: 1})
         .then((result) =>{
             res.render('biler', {varer: result})
         })
@@ -248,7 +252,7 @@ app.get('/biler', (req,res) =>{
 
 
 //viser enkelt vare
-app.get('/biler/:id', (req,res)=>{
+app.get('/biler/:id', (req,res, next)=>{
     const tal = req.params.id;
     Varer.findById(tal)
         .then(result => {
@@ -264,7 +268,6 @@ app.get('/biler/:id', (req,res)=>{
 //slet enkelt vare
 app.delete('/vare/:id', (req,res) =>{
     const id = req.params.id;
-
     Varer.findByIdAndDelete(id)
     .then(result =>{
         res.json({redirect: '/biler'})
@@ -275,17 +278,31 @@ app.delete('/vare/:id', (req,res) =>{
     })
 })
 
+app.post('/biler/:id', async (req,res) =>{
+    const name = req.body.name;
+    const id =  req.params.id
+    const tak =  req.path
+
+     res.send({
+        'userid': id,
+        'tak': tak,
+        'name': name,
+    })
+})
+
+
+
+
 app.post('/biler/:id', async (req,res) =>{  
-    const id = req.params.id;
+    const id = req.body._id;
     const name = req.body.name;
     const description = req.body.description;
     const category = req.body.category;
     const price = req.body.price;
     const picture = req.body.picture;
 
-    console.log(id)
     Varer.findByIdAndUpdate(
-        {_id: '619accdbbc09a04d1efe9bde'}, 
+        {_id: `${id}`}, 
         {name: name, description: description, category: category, price: price, picture: picture})
         .then(result =>{
             res.redirect('/biler')
@@ -306,51 +323,4 @@ app.post('/biler/:id', async (req,res) =>{
 
 
 
- //sender til databasen, og databasen sender tilbage
  
- /*app.get('/login', (req,res) =>{
-    const profile = new Profile({
-        username: 'hunt',
-        password: 'YES',
-    });
-    profile.save()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch((err) =>{
-            console.log(err);
-        });
- })
-
- //bruger find method til at sende alt fra databasen
- app.get('/find-user', (req,res) =>{
-    Profile.find({ username: 'hunt'})
-    .then((result) =>{
-        res.send(result)
-    })
-        .catch((err) =>{
-            console.log(err);
-        });
-    
- })
-//bruger findById method til at finde en blog
-app.get('/test', (req,res) =>{
-    Profile.find('lucasProfile')
-        .then((result) =>{
-            res.send(result)
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
-})
-
-app.get('/blogs', (req,res) =>{
-    Profile.find()
-        .then((result) =>{
-
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-})
-*/

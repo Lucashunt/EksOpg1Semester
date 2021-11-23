@@ -63,7 +63,8 @@
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Jeg accepterer vilkår</label>
                           </div>
-                          <button type="submit" class="btn btn-primary">Skift</button>
+                          <button><a href="" type="submit" class="post" data-doc="<%= vare._id%>">Skift</a></button>
+                   
                         </form>
                       </div>
                     </div>
@@ -75,6 +76,21 @@
 
 
     <script>
+        const trashcan2 = document.querySelector('a.post');
+
+trashcan2.addEventListener('click', (event) => {
+     const endpoint = `/biler/${trashcan2.dataset.doc}`;
+
+     fetch(endpoint, {
+         method: 'POST'
+     })
+     .then((response) => response.json())
+     .then((data) => window.location.href= data.redirect)
+     .catch((err) => console.log(err))
+
+})
+
+
 
         const trashcan = document.querySelector('a.delete');
 

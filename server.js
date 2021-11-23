@@ -252,7 +252,7 @@ app.get('/biler', (req,res) =>{
 
 
 //viser enkelt vare
-app.get('/biler/:id', (req,res, next)=>{
+app.get('/biler/:id', (req,res)=>{
     const tal = req.params.id;
     Varer.findById(tal)
         .then(result => {
@@ -261,6 +261,7 @@ app.get('/biler/:id', (req,res, next)=>{
         .catch((err) =>{
             console.log(err)
         })
+        
 })
 
 
@@ -278,39 +279,24 @@ app.delete('/vare/:id', (req,res) =>{
     })
 })
 
-app.post('/biler/:id', async (req,res) =>{
-    const name = req.body.name;
-    const id =  req.params.id
-    const tak =  req.path
-
-     res.send({
-        'userid': id,
-        'tak': tak,
-        'name': name,
-    })
-})
-
-
-
 
 app.post('/biler/:id', async (req,res) =>{  
-    const id = req.body._id;
+    const id = req.params.id;
     const name = req.body.name;
     const description = req.body.description;
     const category = req.body.category;
     const price = req.body.price;
     const picture = req.body.picture;
 
-    Varer.findByIdAndUpdate(
-        {_id: `${id}`}, 
-        {name: name, description: description, category: category, price: price, picture: picture})
-        .then(result =>{
-            res.redirect('/biler')
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
+    Varer.findByIdAndUpdate(id, {name: name, description: description, category: category, price: price, picture: picture})
+    .then(result =>{
+        res.redirect('/biler')
     })
+    .catch((err) =>{
+        console.log(err)
+    })
+})
+
 
 
 

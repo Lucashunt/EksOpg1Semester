@@ -11,7 +11,7 @@
     />
 </head>
 <body>
-    <%- include('./pages/partials/nav2.ejs')  %> 
+    <%- include('./pages/partials/nav.ejs')  %> 
 
     <section class="">
         <div class="container-xxl my-5 py-5">
@@ -25,9 +25,8 @@
                                 <h5 class="card-title"><%= vare.name %> </h5>
                                 <p class="card-text"><%= vare.description %> </p>
                                 <a href="#" class="btn btn-primary"><%= vare.price %> Kr</a>
-                                <p class="card-text fw-light fst-italic mt-2">#<%= vare.category%> </p>
                                 <div>
-                                <a class="delete" data-doc="<%= vare._id%>" >delete</a>
+                                <a class="delete" data-doc="<%= vare._id%>" >Slet</a>
                             </div>
                         </div>
                       </div>
@@ -63,7 +62,7 @@
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Jeg accepterer vilkår</label>
                           </div>
-                          <button><a href="" type="submit" class="post" data-doc="<%= vare._id%>">Skift</a></button>
+                          <button type="submit" class="btn btn-primary">Skift</button>
                    
                         </form>
                       </div>
@@ -76,21 +75,6 @@
 
 
     <script>
-        const trashcan2 = document.querySelector('a.post');
-
-trashcan2.addEventListener('click', (event) => {
-     const endpoint = `/biler/${trashcan2.dataset.doc}`;
-
-     fetch(endpoint, {
-         method: 'POST'
-     })
-     .then((response) => response.json())
-     .then((data) => window.location.href= data.redirect)
-     .catch((err) => console.log(err))
-
-})
-
-
 
         const trashcan = document.querySelector('a.delete');
 

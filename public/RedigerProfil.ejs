@@ -11,30 +11,7 @@
     />
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
-        <div class="container-xxl">
-            <a href="/" class="navbar-brand">
-                <h1 class="text-primary">dba</h1>
-            </a>
-            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
-                <ul class="navbar-nav">
-    
-                    <li class="nav-item ms-2">
-                        <a class=" btn btn-warning" href="/Opretvare">Opret Annonce</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class=" btn btn-secondary" href="/SeVarer">Se Annoncer</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-outline-primary" href="/RedigerProfil/<%= ID %> ">Rediger profil</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-outline-danger" href="#">Log ud</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> 
+    <%- include('./pages/partials/nav.ejs')  %> 
 
     <section class="my-5 py-5" id="intro">
         <div class="container-lg">
@@ -52,41 +29,39 @@
                 <div class="m-3 p-3 rounded-pill border border-grey border-5 shadow lg fw-bold">Adgangskode</div>
                     <div class="fst-italic fw-light"> <%= password %> </div>
                         <form action="/RedigerProfil/:id" method="DELETE">
-                            <a id="delete" type="submit" class="delete" data-doc="<%= ID %> " href="/">DELETE</a>
+                            <a id="delete" type="submit" class="delete btn btn-primary" href="/logud">Slet</a>
                         </form>
             </div>
         </div>
     </section>
 
-    <section class="my-5">
-        <div class="my-5 py-5 container-xxl">
+    <section>
+        <div class=" container-xxl">
+            <h1 class="text-center display-5 text-primary">Rediger Profil</h1>
           <div class="row align-items-center justify-content-evenly">
             <div class="col-8">
-            <form action="/RedigerProfil/:id" method="post" class="py-5">
+            <form action="/RedigerProfil" method="post" class="py-5">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Fulde navn</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
-                    <div id="emailHelp" class="form-text">Skriv en kort overskrift for din vare</div>
+                    <div id="emailHelp" class="form-text">Skal udfyldes!</div>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Addresse</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="address">
-                    <div id="emailHelp" class="form-text">Skriv en kort præcis beskrivelse af din vare</div>
+                    <div id="emailHelp" class="form-text">Skal udfyldes!</div>
                   </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Username</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
-                  <div id="emailHelp" class="form-text">Hvor meget skal din vare koste?</div>
+                  <div id="emailHelp" class="form-text">Skal udfyldes!</div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Password</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="password">
-                    <div id="emailHelp" class="form-text">Hvor meget skal din vare koste?</div>
+                    <div id="emailHelp" class="form-text">Skal udfyldes!</div>
                   </div>
-                  <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Jeg accepterer vilkår</label>
-                  </div>
+
                   <button type="submit" class="btn btn-primary">Skift</button>
                 </form>
               </div>
@@ -105,7 +80,7 @@
         const trashcan = document.querySelector('a.delete');
 
        trashcan.addEventListener('click', (event) => {
-            const endpoint = `/RedigerProfil/${trashcan.dataset.doc}`;
+            const endpoint = '/RedigerProfil';
 
             fetch(endpoint, {
                 method: 'DELETE'

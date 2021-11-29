@@ -5,18 +5,37 @@
         </a>
         <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
-                    </form>
+
+            <% if (user) { %>
+                <li class="nav-item ms-2">
+                    <a class=" btn btn-light" href="#">Velkommen <%= user %></a>
                 </li>
                 <li class="nav-item ms-2">
                     <a class=" btn btn-warning" href="/Opretvare">Opret Annonce</a>
                 </li>
                 <li class="nav-item ms-2">
-                    <a class="btn btn-outline-secondary" href="/login">Log ind</a>
+                    <a class=" btn btn-secondary" href="/SeVarer">Se Annoncer</a>
                 </li>
+                <li class="nav-item ms-2">
+                    <a class="btn btn-outline-primary" href="/RedigerProfil">Rediger profil</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a class="btn btn-outline-danger" href="/logud">Log ud</a>
+                </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit">Søg</button>
+                        </form>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class=" btn btn-warning" href="/login">Log ind</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class=" btn btn-primary" href="/Opretprofil">Opret Profil</a>
+                    </li>
+                  <% } %>
             </ul>
         </div>
     </div>

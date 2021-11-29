@@ -11,10 +11,11 @@
     />
 </head>
 <body>
-  <%- include('./pages/partials/nav2.ejs')  %> 
+  <%- include('./pages/partials/nav.ejs')  %> 
 
     <section class="my-5">
         <div class="my-5 py-5 container-xxl">
+          <h1 class="text-center display-5 text-primary">Opret Annonce</h1>
           <div class="row align-items-center justify-content-evenly">
             <div class="col-8">
             <form action="/Opretvare" method="post" class="py-5">
@@ -37,6 +38,11 @@
                   <label for="exampleInputEmail1" class="form-label">Cover billede</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="picture">
                   <div id="emailHelp" class="form-text">Skal være url til div</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Dit brugernavn</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user">
+                  <div id="emailHelp" class="form-text">Skriv dit brugernavn!</div>
                 </div>
 
                 <div class="mb-3">

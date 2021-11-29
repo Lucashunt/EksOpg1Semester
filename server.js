@@ -228,9 +228,11 @@ app.get('/biler', (req,res) =>{
 
 //viser enkelt vare
 app.get('/biler/:id', (req,res)=>{
-    const tal = req.params.id;
-    Varer.findById(tal)
+    const id = req.params.id;
+    const cookies = req.cookies
+    Varer.findById(id)
         .then(result => {
+            res.cookie('id', id)
             res.render('vare', {vare: result})
         })
         .catch((err) =>{
@@ -256,14 +258,13 @@ app.delete('/vare/:id', (req,res) =>{
 
 // Opdater vare 
 app.post('/biler/:id', async (req,res) =>{  
-    const id = req.params.id;
+    const cookies = req.cookies
     const name = req.body.name;
     const description = req.body.description;
     const category = req.body.category;
     const price = req.body.price;
-    const picture = req.body.picture;
 
-    Varer.findByIdAndUpdate({_id:'61a38430d0c5b0992a586da3'}, {name: name, description: description, category: category, price: price, picture: picture})
+    Varer.findOneAndUpdate({_id: cookies.id}, {name: name, description: description, category: category, price: price})
     .then(result =>{
         res.redirect('/biler')
     })

@@ -274,7 +274,7 @@ app.post('/biler/:id', async (req,res) =>{
 })
 
 
-
+module.exports = app;
 
 
 
